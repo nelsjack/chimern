@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 .then((res) => {
     app.listen(3333, () => console.log("Connected to MongoDB"))
 })
+.catch(err => console.log(err))
 
 app.get("/home", (req, res) => {
     res.json({
