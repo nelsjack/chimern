@@ -6,17 +6,12 @@ class Login extends React.Component {
         super(props);
         this.history = createBrowserHistory();
         this.handleLogin = this.handleLogin.bind(this);
+        this.checkUserAuth = this.checkUserAuth.bind(this);
     }
 
-    // componentDidMount() {
-    //     fetch("http://localhost:3333/checkUserAuth", {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("token")
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => data.isLoggedIn ? this.history.push("/dashboard"): null)
-    // }
+    componentDidMount() {
+        this.checkUserAuth();
+    }
 
     render() {
         return (
@@ -24,6 +19,7 @@ class Login extends React.Component {
                 <input required type='username'/>
                 <input required type='password'/>
                 <input type='submit' value='Submit'/>
+                <p>Login</p>
             </form>
                 
         )
@@ -47,10 +43,26 @@ class Login extends React.Component {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            console.log('handleLogin: ', data)
             localStorage.setItem("token", data.token)
+            this.checkUserAuth();
+        })
+    }
+
+    checkUserAuth() {
+        fetch("http://localhost:3333/checkUserAuth", {
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('checkUserAuth data: ', data)
+            if(data.isLoggedIn) {
+                this.history.push("/dashboard")
+            }
         })
     }
 }
 
-export { Login };
+export default Login;

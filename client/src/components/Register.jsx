@@ -8,15 +8,15 @@ class Register extends React.Component {
         this.handleRegister = this.handleRegister.bind(this);
     }
 
-    // componentDidMount() {
-    //     fetch("http://localhost:3333/checkUserAuth", {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("token")
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => data.isLoggedIn ? this.history.push("/dashboard"): null)
-    // }
+    componentDidMount() {
+        fetch("http://localhost:3333/checkUserAuth", {
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.isLoggedIn ? this.history.push("/dashboard"): null)
+    }
 
     render() {
         return (
@@ -24,6 +24,7 @@ class Register extends React.Component {
                 <input required type='username'/>
                 <input required type='password'/>
                 <input type='submit' value='Submit'/>
+                <p>Register</p>
             </form>
                 
         )
@@ -47,10 +48,25 @@ class Register extends React.Component {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            console.log('registeration status: ', data)
             localStorage.setItem("token", data.token)
+        })
+    }
+
+    checkUserAuth() {
+        fetch("http://localhost:3333/checkUserAuth", {
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('checkUserAuth data: ', data)
+            if(data.isLoggedIn) {
+                this.history.push("/dashboard")
+            }
         })
     }
 }
 
-export { Register };
+export default Register;

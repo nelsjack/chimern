@@ -29,7 +29,7 @@ router.post("/login", (req, res) => {
                             return res.json({message: err})
                         }
                         return res.json({
-                            message: "Success",
+                            message: "Bearer Token Created",
                             token: "Bearer " + token
                         })
                     }
