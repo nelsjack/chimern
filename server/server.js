@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
 })
 .catch(err => console.log(err))
 
-app.get("/getUsername", verifyJWT, (req, res) => {
+app.get("/checkUserAuth", verifyJWT, (req, res) => {
     res.json({isLoggedIn: true, username: req.user.username})
 })
 

@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 router.post("/login", (req, res) => {
     const userLoggingIn = req.body;
-
+    
     User.findOne({username: userLoggingIn.username})
     .then(dbUser => {
         if(!dbUser) {
