@@ -5,26 +5,16 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: ''
-    }
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Login/>} exact path="/login"/>
-          <Route element={<Register/>} exact path="/register"/>
-          <Route element={<Dashboard/>} exact path="/dashboard"/>
-        </Routes>
-      </BrowserRouter>
-    )
-  }
+function App() {
+  return(
+    <BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login/>} />
+      <Route path="/register" element={<Register/>} />
+      <Route path="/" element={<Dashboard/>}/>
+    </Routes>
+  </BrowserRouter>
+  )
 }
-
 
 export default App;

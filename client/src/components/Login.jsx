@@ -1,31 +1,10 @@
-import React from 'react';
-import { createBrowserHistory } from 'history'
+import { useNavigate } from 'react-router'
+import { useEffect } from 'react'
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.history = createBrowserHistory();
-        this.handleLogin = this.handleLogin.bind(this);
-        this.checkUserAuth = this.checkUserAuth.bind(this);
-    }
+function Login() {
+    const navigate = useNavigate()
 
-    componentDidMount() {
-        this.checkUserAuth();
-    }
-
-    render() {
-        return (
-            <form onSubmit={event => this.handleLogin(event)}>
-                <input required type='username'/>
-                <input required type='password'/>
-                <input type='submit' value='Submit'/>
-                <p>Login</p>
-            </form>
-                
-        )
-    }
-
-    handleLogin(e) {
+    function handleLogin(e) {
         e.preventDefault()
 
         const form = e.target;
@@ -45,11 +24,10 @@ class Login extends React.Component {
         .then(data => {
             console.log('handleLogin: ', data)
             localStorage.setItem("token", data.token)
-            this.checkUserAuth();
         })
     }
 
-    checkUserAuth() {
+    useEffect(() => {
         fetch("http://localhost:3333/checkUserAuth", {
             headers: {
                 "x-access-token": localStorage.getItem("token")
@@ -59,10 +37,21 @@ class Login extends React.Component {
         .then(data => {
             console.log('checkUserAuth data: ', data)
             if(data.isLoggedIn) {
-                this.history.push("/dashboard")
+                console.log('poop')
+                navigate("/dashboard")
             }
         })
-    }
+    }, [])
+
+    return (
+        <form onSubmit={event => handleLogin(event)}>
+            <input required type='username'/>
+            <input required type='password'/>
+            <input type='submit' value='Submit'/>
+            <p>Login</p>
+        </form>
+            
+    )
 }
 
 export default Login;
