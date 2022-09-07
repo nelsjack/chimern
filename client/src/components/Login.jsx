@@ -1,11 +1,17 @@
-import { useNavigate } from 'react-router'
-import { useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import "./Login.css"
+import mongoat from "/Users/jacknelson/Projects/Chimern/client/src/mongoat.png"
+import lionode from "/Users/jacknelson/Projects/Chimern/client/src/lionode.png"
+import dreacton from "/Users/jacknelson/Projects/Chimern/client/src/dreacton.png"
 
 function Login() {
+    const [valid, setValid] = useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
         checkUserAuth();
+
     }, [])
 
     function handleLogin(e) {
@@ -26,10 +32,17 @@ function Login() {
         })
         .then(res => res.json())
         .then(data => {
-            console.log('handleLogin: ', data)
+            console.log(data)
+            if (!data.valid) {
+                setValid(false);
+            }
             localStorage.setItem("token", data.token)
             checkUserAuth();
         })
+    }
+
+    function handleInvalidClick() {
+        setValid(true);
     }
 
     function checkUserAuth() {
@@ -41,20 +54,43 @@ function Login() {
     .then(res => res.json())
     .then(data => {
         if(data.isLoggedIn) {
-            console.log('Login Successful')
+            console.log("Login Successful")
             navigate("/")
         }
     })
 }
 
     return (
-        <form onSubmit={event => handleLogin(event)}>
-            <input required type='username'/>
-            <input required type='password'/>
-            <input type='submit' value='Submit'/>
-            <p>Login</p>
-        </form>
-            
+        <div>
+            {!valid &&
+                <div className="invalid-login-container">
+                    <div className="invalid-login-dimmer"></div>
+                    <div className="invalid-message nes-container is-centered">
+                            <p>Incorrect username or password</p>
+                            <button className="nes-btn is-primary" onClick={handleInvalidClick}>Try Again</button>
+                    </div>
+                </div>
+            }
+            <div className="login-container">
+                <h1 className="title">CHIMERN</h1>
+                <div className="img-container">
+                    <img className="creature" src={mongoat} alt="mongoat"/>
+                    <img className="creature" src={lionode} alt="lionode"/>
+                    <img className="creature" src={dreacton} alt="dreacton"/>
+                </div>
+                <form onSubmit={event => handleLogin(event)}>
+                    <div className="nes-field">
+                        <label className="input-label">Username</label>
+                        <input className="nes-input" required type="username"/>
+                        <label className="input-label">Password</label>
+                        <input className="nes-input" required type="password"/>
+                        <button className="nes-btn is-primary" type="submit">Login</button>
+                        <button className="nes-btn is-success" id="new-user" type="submit">New User?</button>
+                    </div>
+                    <div></div>
+                </form>
+            </div>
+        </div>
     )
 }
 

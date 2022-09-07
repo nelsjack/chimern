@@ -10,7 +10,8 @@ router.post("/login", (req, res) => {
     .then(dbUser => {
         if(!dbUser) {
             return res.json({
-                message: "Invalid Username or Password"
+                message: "Invalid Username or Password",
+                valid: false
             })
         }
         bcrypt.compare(userLoggingIn.password, dbUser.password)
@@ -30,13 +31,14 @@ router.post("/login", (req, res) => {
                         }
                         return res.json({
                             message: "Bearer Token Created",
-                            token: "Bearer " + token
+                            token: "Bearer " + token,
                         })
                     }
                 )
             } else {
                 return res.json({
-                    message: "Invalid Username or Password"
+                    message: "Invalid Username or Password",
+                    valid: false
                 })
             }
         })
