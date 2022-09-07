@@ -4,6 +4,10 @@ import { useEffect } from 'react'
 function Register() {
 const navigate = useNavigate();
 
+useEffect(() => {
+    checkUserAuth();
+}, [])
+
 async function handleRegister(e) {
     e.preventDefault()
     const form = e.target;
@@ -27,10 +31,6 @@ async function handleRegister(e) {
     })
 }
 
-useEffect(() => {
-    checkUserAuth();
-}, [])
-
     function checkUserAuth() {
         fetch("http://localhost:3333/checkUserAuth", {
         headers: {
@@ -39,13 +39,12 @@ useEffect(() => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log('checkUserAuth data: ', data)
         if(data.isLoggedIn) {
-            console.log('poop')
-            navigate("/dashboard")
+            console.log('Registration Successful')
+            navigate("/")
         }
     })
-    }
+}
 
     return (
         <form onSubmit={event => handleRegister(event)}>

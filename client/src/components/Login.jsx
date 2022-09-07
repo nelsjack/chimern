@@ -4,6 +4,10 @@ import { useEffect } from 'react'
 function Login() {
     const navigate = useNavigate()
 
+    useEffect(() => {
+        checkUserAuth();
+    }, [])
+
     function handleLogin(e) {
         e.preventDefault()
 
@@ -24,24 +28,24 @@ function Login() {
         .then(data => {
             console.log('handleLogin: ', data)
             localStorage.setItem("token", data.token)
+            checkUserAuth();
         })
     }
 
-    useEffect(() => {
+    function checkUserAuth() {
         fetch("http://localhost:3333/checkUserAuth", {
-            headers: {
-                "x-access-token": localStorage.getItem("token")
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('checkUserAuth data: ', data)
-            if(data.isLoggedIn) {
-                console.log('poop')
-                navigate("/dashboard")
-            }
-        })
-    }, [])
+        headers: {
+            "x-access-token": localStorage.getItem("token")
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.isLoggedIn) {
+            console.log('Login Successful')
+            navigate("/")
+        }
+    })
+}
 
     return (
         <form onSubmit={event => handleLogin(event)}>
