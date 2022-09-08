@@ -34,8 +34,9 @@ function Login() {
             console.log(data)
             if (!data.valid) {
                 setValid(false);
+            } else {
+                localStorage.setItem("token", data.token)
             }
-            localStorage.setItem("token", data.token)
             checkUserAuth();
         })
     }
