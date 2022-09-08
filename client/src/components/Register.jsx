@@ -22,7 +22,8 @@ async function handleRegister(e) {
     const form = e.target;
     const user = {
         username: form[0].value,
-        password: form[1].value
+        password: form[1].value,
+        creature: creature
     }
 
     fetch("http://localhost:3333/register", {
@@ -42,9 +43,9 @@ async function handleRegister(e) {
 }
 
     function displayFlavorText() {
-        if (creature === "mongoat") return "MONGOAT Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut eleifend arcu, id sagittis massa. Sed eu interdum nibh. Sed leo dui, auctor eget hendrerit non, vestibulum nec arcu."
-        if (creature === "dreacton") return "DREACTON Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut eleifend arcu, id sagittis massa. Sed eu interdum nibh. Sed leo dui, auctor eget hendrerit non, vestibulum nec arcu."
-        if (creature === "lionode") return "LIONODE Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut eleifend arcu, id sagittis massa. Sed eu interdum nibh. Sed leo dui, auctor eget hendrerit non, vestibulum nec arcu."
+        if (creature === "mongoat") return "MONGOAT Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        if (creature === "dreacton") return "DREACTON Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        if (creature === "lionode") return "LIONODE Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }
 
     function checkUserInput() {

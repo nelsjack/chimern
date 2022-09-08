@@ -18,7 +18,8 @@ router.post("/register", async (req, res) => {
 
         const dbUser = new User({
             username: user.username.toLowerCase(),
-            password: user.password
+            password: user.password,
+            creature: user.creature
         })
 
         dbUser.save()

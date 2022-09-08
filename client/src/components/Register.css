@@ -34,7 +34,12 @@
 
 .flavor-text {
     text-align: center;
-    font-size: 0.9em;
     margin-top: 20px;
-    height: 150px;
+    height: 100px;
+    margin-bottom: 0px;
+}
+.nes-btn-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
 }

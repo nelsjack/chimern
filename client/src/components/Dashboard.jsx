@@ -17,7 +17,7 @@ function Dashboard() {
                 navigate("/login")
             }
         })
-    }, [])
+    })
 
     return (
         <p>Dashboard</p>
