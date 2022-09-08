@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import "./Login.css"
-import mongoat from "/Users/jacknelson/Projects/Chimern/client/src/mongoat.png"
-import lionode from "/Users/jacknelson/Projects/Chimern/client/src/lionode.png"
-import dreacton from "/Users/jacknelson/Projects/Chimern/client/src/dreacton.png"
+import mongoat from "../mongoat.png"
+import lionode from "../lionode.png"
+import dreacton from "../dreacton.png"
 
 function Login() {
     const [valid, setValid] = useState(true)
@@ -11,8 +11,7 @@ function Login() {
 
     useEffect(() => {
         checkUserAuth();
-
-    }, [])
+    })
 
     function handleLogin(e) {
         e.preventDefault()
@@ -43,6 +42,10 @@ function Login() {
 
     function handleInvalidClick() {
         setValid(true);
+    }
+
+    function handleNewUserClick() {
+        navigate("/register")
     }
 
     function checkUserAuth() {
@@ -84,10 +87,11 @@ function Login() {
                         <input className="nes-input" required type="username"/>
                         <label className="input-label">Password</label>
                         <input className="nes-input" required type="password"/>
-                        <button className="nes-btn is-primary" type="submit">Login</button>
-                        <button className="nes-btn is-success" id="new-user" type="submit">New User?</button>
+                        <div className="nes-btn-container">
+                            <button className="nes-btn is-primary" type="submit">Login</button>
+                            <button className="nes-btn is-success" id="new-user" type="button" onClick={handleNewUserClick}>New User?</button>
+                        </div>
                     </div>
-                    <div></div>
                 </form>
             </div>
         </div>
