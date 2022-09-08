@@ -8,8 +8,9 @@ import dreacton from "../dreacton.png"
 function Register() {
 const [usernameFieldValue, setUsernameFieldValue] = useState("")
 const [passwordFieldValue, setPasswordFieldValue] = useState("")
-const [buttonStatus, setButtonStatus] = useState("")
 const [creature, setCreature] = useState("")
+const [buttonStyle, setButtonStyle] = useState("")
+const [buttonDisabledStatus, setButtonDisabledStatus] = useState(false)
 const navigate = useNavigate();
 
 useEffect(() => {
@@ -50,9 +51,11 @@ async function handleRegister(e) {
 
     function checkUserInput() {
         if (usernameFieldValue && passwordFieldValue && creature) {
-            setButtonStatus("is-primary")
+            setButtonStyle("is-primary")
+            setButtonDisabledStatus(false)
         } else {
-            setButtonStatus("is-disabled")
+            setButtonStyle("is-disabled")
+            setButtonDisabledStatus(true)
         }
     }
 
@@ -93,7 +96,7 @@ async function handleRegister(e) {
                     <label className="input-label">Password</label>
                     <input className={"nes-input"} required type="password" onChange={(e) => {setPasswordFieldValue(e.target.value)}}/>
                     <div className="nes-btn-container">
-                        <button className={"nes-btn " + buttonStatus} type="submit">Create Account</button>
+                        <button className={"nes-btn " + buttonStyle} disabled={buttonDisabledStatus} type="submit">Create Account</button>
                     </div>
                 </div>
             </form>
