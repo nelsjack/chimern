@@ -32,6 +32,7 @@ router.post("/login", (req, res) => {
                         return res.json({
                             message: "Bearer Token Created",
                             token: "Bearer " + token,
+                            valid: true
                         })
                     }
                 )

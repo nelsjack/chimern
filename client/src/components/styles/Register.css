@@ -15,11 +15,14 @@
     margin-top: 10px;
 }
 
+.creature-select-container {
+    width: 100%;
+}
+
 .creature-btn-container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width: 100%;
 }
 
 .creature-btn {
@@ -38,6 +41,7 @@
     height: 100px;
     margin-bottom: 0px;
 }
+
 .nes-btn-container {
     display: flex;
     flex-direction: column;

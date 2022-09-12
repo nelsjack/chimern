@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import "./Login.css"
-import mongoat from "../mongoat.png"
-import lionode from "../lionode.png"
-import dreacton from "../dreacton.png"
+import "../styles/Login.css"
+import mongoat from "../../assets/mongoat.png"
+import lionode from "../../assets/lionode.png"
+import dreacton from "../../assets/dreacton.png"
 
 function Login() {
     const [valid, setValid] = useState(true)
