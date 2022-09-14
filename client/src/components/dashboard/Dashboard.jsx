@@ -19,8 +19,18 @@ function Dashboard() {
         })
     })
 
+    function handleLogout() {
+        localStorage.removeItem("token")
+        navigate("/login")
+    }
+
     return (
-        <p>Dashboard</p>
+        <div className="dashboard-container">
+            <p>Dashboard</p>
+            <button className="nes-btn" onClick={handleLogout}>Logout</button>
+        </div>
+            
+
     )
 }
 

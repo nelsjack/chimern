@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
     const user = req.body;
-
+    
     const takenUsername = await User.findOne({username: user.username})
-
+    
     if (takenUsername) {
         res.json({message: "User already exists"})
     } else {
@@ -18,7 +18,8 @@ router.post("/register", async (req, res) => {
 
         const dbUser = new User({
             username: user.username.toLowerCase(),
-            password: user.password
+            password: user.password,
+            creature: user.creature
         })
 
         dbUser.save()

@@ -9,9 +9,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    creature: [{
-        type: String
-    }]
+    creature: {
+        type: String,
+        required: true
+    }
 }, {timestamps: true})
 
 const User = mongoose.model("User", userSchema);
