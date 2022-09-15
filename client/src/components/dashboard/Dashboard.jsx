@@ -1,5 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { BACKDROP } from '../constants/dashboard.js'
+import HealthContainer from './HealthContainer'
+import Playground from './Playground'
+import ActionContainer from './ActionContainer'
+import "../styles/Dashboard.css"
 
 function Dashboard() {
     const navigate = useNavigate()
@@ -26,8 +31,11 @@ function Dashboard() {
 
     return (
         <div className="dashboard-container">
-            <p>Dashboard</p>
-            <button className="nes-btn" onClick={handleLogout}>Logout</button>
+            <img className="backdrop" src={BACKDROP.image} alt="backdrop"/>
+            <HealthContainer/>
+            <Playground/>
+            <ActionContainer/>
+            <button className="nes-btn logout-btn" onClick={handleLogout}>Logout</button>
         </div>
             
 
