@@ -18,6 +18,7 @@ app.use(cors({
 //routes
 app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
+app.use('/', require('./routes/dashboard'));
 
 mongoose.connect(process.env.MONGO_URI)
 .then((res) => {
@@ -41,7 +42,6 @@ function verifyJWT(req, res, next) {
                 })
             }
                 req.user = {};
-                req.user.id = decoded.id;
                 req.user.username = decoded.username
                 next()
         })

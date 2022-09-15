@@ -12,7 +12,8 @@ router.post("/register", async (req, res) => {
         res.json({message: "User already exists"})
     } else {
         const payload = {
-            username: user.username
+            username: user.username,
+            creature: user.creature
         }
         user.password = await bcrypt.hash(req.body.password, 10)
 

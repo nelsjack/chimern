@@ -3,7 +3,7 @@ import { MONGOAT_HEAD } from "../constants/creatures";
 function HealthContainer() {
     return (
         <div className="health-container">
-            <img className="creature-icon" src={MONGOAT_HEAD.image} alt="icon"/>
+            <img className="creature-head-icon" src={MONGOAT_HEAD.image} alt="icon"/>
             <div className="health-bar">
                 <i className="nes-icon is-large heart"></i>
                 <i className="nes-icon is-large is-half heart"></i>

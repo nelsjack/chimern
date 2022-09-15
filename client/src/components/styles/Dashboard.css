@@ -28,7 +28,7 @@
     margin-top: 10px;
 }
 
-.creature-icon {
+.creature-head-icon {
     height: 100px;
     width: 125px;
 }
@@ -50,3 +50,4 @@
 .feed-btn {
     width: 150px;
 }
+
