@@ -6,9 +6,8 @@ function Playground({userCreature}) {
             <div className="creature-container">
                 {CREATURES.map(creature => {
                     if (userCreature === creature.name) {
-                        //console.log(creature.image)
                         return (
-                            <img className="creature" src={creature.image} alt="creature"/>
+                            <img className="creature" src={creature.image} key={creature} alt="creature"/>
                         )
                     } else return null;
                 })}

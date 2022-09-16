@@ -17,10 +17,12 @@ router.post("/register", async (req, res) => {
         }
         user.password = await bcrypt.hash(req.body.password, 10)
 
+        const date = Date()
+
         const dbUser = new User({
             username: user.username.toLowerCase(),
             password: user.password,
-            creature: user.creature
+            creature: {name: user.creature, born: date}
         })
 
         dbUser.save()

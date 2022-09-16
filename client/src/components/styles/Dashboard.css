@@ -26,6 +26,7 @@
     flex-direction: row;
     align-items: center;
     margin-top: 10px;
+    margin-left: 10px
 }
 
 .creature-head-icon {
@@ -38,6 +39,10 @@
 }
 
 .playground-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 575px;
     width: 100%;
 }
@@ -50,4 +55,3 @@
 .feed-btn {
     width: 150px;
 }
-

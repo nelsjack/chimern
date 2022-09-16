@@ -28,7 +28,6 @@ async function handleRegister(e) {
         password: form[1].value,
         creature
     }
-    console.log(user)
 
     fetch("http://localhost:3333/register", {
         method: "POST",

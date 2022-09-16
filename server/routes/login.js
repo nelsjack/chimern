@@ -19,7 +19,7 @@ router.post("/login", (req, res) => {
             if(isCorrect) {
                 const payload = {
                     username: dbUser.username,
-                    creature: dbUser.creature
+                    creature: dbUser.creature[0].name
                 }
                 jwt.sign(
                     payload,
