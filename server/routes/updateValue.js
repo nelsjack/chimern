@@ -21,7 +21,6 @@ router.post("/updateValue", (req, res) => {
                 [type]: creatureValue
             })
             dbUser.save()
-            console.log(userCreature)
             return res.json(creatureValue)
         })
     })

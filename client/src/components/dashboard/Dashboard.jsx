@@ -30,8 +30,8 @@ function Dashboard() {
         getCreatureInfo();
     }, [])
 
-    function getCreatureInfo() {
-        fetch("http://localhost:3333/dashboard", {
+    async function getCreatureInfo() {
+        await fetch("http://localhost:3333/dashboard", {
             headers: {
                 "x-access-token": localStorage.getItem("token")
             }
@@ -59,7 +59,7 @@ function Dashboard() {
             <HealthContainer/>
             <StatusBars hunger={hunger} mood={mood} cleanliness={cleanliness}/>
             <Playground userCreature={userCreature}/>
-            <ActionContainer getCreatureInfo={getCreatureInfo}/>
+            <ActionContainer setHunger={setHunger} setMood={setMood} setCleanliness={setCleanliness}/>
             <button className="nes-btn logout-btn" onClick={handleLogout}>Logout</button>
         </div>
             

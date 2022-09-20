@@ -1,6 +1,6 @@
 import { STEAK, SOAP, BALL } from "../constants/dashboard"
 
-function ActionContainer({getCreatureInfo}) {
+function ActionContainer({setHunger, setMood, setCleanliness}) {
 
     async function handleClick(type) {
         const body = {type: type}
@@ -11,8 +11,12 @@ function ActionContainer({getCreatureInfo}) {
                 "x-access-token": localStorage.getItem("token")
             },
             body: JSON.stringify(body)
-        })
-        getCreatureInfo();
+        }).then(res => res.json())
+            .then(data => {
+                if (type === "hunger") {setHunger(data)}
+                if (type === "mood") {setMood(data)}
+                if (type === "cleanliness") {setCleanliness(data)}
+            })
     }
     
     return (
