@@ -2,7 +2,9 @@ const User = require("../models/userModel")
 const router = require('express').Router();
 const jwt = require("jsonwebtoken");
 
-router.get("/dashboard", async (req, res) => {
+router.post("/updateValue", (req, res) => {
+    const body = req.body
+    const type = body.type;
     const token = req.headers["x-access-token"]?.split(" ")[1];
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) { 
@@ -13,9 +15,15 @@ router.get("/dashboard", async (req, res) => {
             if (!dbUser) {
                 return null
             }
-            res.json({creature: dbUser.creature, hunger: dbUser.hunger, mood: dbUser.hunger, cleanliness: dbUser.cleanliness})
+            const userCreature = dbUser.creature[0]
+            const creatureValue = userCreature[type] + 10
+            userCreature.set({
+                [type]: creatureValue
+            })
+            dbUser.save()
+            console.log(userCreature)
+            return res.json(creatureValue)
         })
-        
     })
 })
 

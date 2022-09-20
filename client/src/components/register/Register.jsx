@@ -38,9 +38,7 @@ async function handleRegister(e) {
     })
     .then(res => {
         res.json().then(data => {
-            console.log('registration status: ', data)
             localStorage.setItem("token", data.token)
-            console.log('Registration Successful')
             checkUserAuth();
         })
     })

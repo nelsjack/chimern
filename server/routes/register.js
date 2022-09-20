@@ -22,7 +22,7 @@ router.post("/register", async (req, res) => {
         const dbUser = new User({
             username: user.username.toLowerCase(),
             password: user.password,
-            creature: {name: user.creature, born: date}
+            creature: {name: user.creature, born: date, fed: "", mana: 0, hunger: 50, mood: 50, cleanliness: 50}
         })
 
         dbUser.save()

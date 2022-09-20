@@ -31,7 +31,6 @@ function Login() {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if (!data.valid) {
                 setValid(false);
             } else {
@@ -58,7 +57,6 @@ function Login() {
     .then(res => res.json())
     .then(data => {
         if(data.isLoggedIn) {
-            console.log("Login Successful")
             navigate("/")
         }
     })

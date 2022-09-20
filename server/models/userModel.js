@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     creature: {
-        type: [{name: String, born: Date, fed: Date, health: Number}],
+        type: [{name: String, born: Date, fed: Date, mana: Number, hunger: Number, mood: Number, cleanliness: Number}],
         required: true
     }
 }, {timestamps: true})

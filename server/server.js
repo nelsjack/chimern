@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors")
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 const User = require("./models/userModel")
 require('dotenv').config();
 
@@ -19,6 +18,7 @@ app.use(cors({
 app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
 app.use('/', require('./routes/dashboard'));
+app.use('/', require('./routes/updateValue'))
 
 mongoose.connect(process.env.MONGO_URI)
 .then((res) => {
