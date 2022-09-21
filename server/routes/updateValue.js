@@ -16,12 +16,14 @@ router.post("/updateValue", (req, res) => {
                 return null
             }
             const userCreature = dbUser.creature[0]
-            const creatureValue = userCreature[type] + 10
-            userCreature.set({
-                [type]: creatureValue
-            })
-            dbUser.save()
-            return res.json(creatureValue)
+            if (userCreature[type] < 100) {
+                const creatureValue = userCreature[type] + 10
+                userCreature.set({
+                    [type]: creatureValue
+                })
+                dbUser.save()
+                return res.json(creatureValue)
+            }
         })
     })
 })
